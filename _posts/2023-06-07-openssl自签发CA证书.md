@@ -84,23 +84,23 @@ openssl x509 -req -days 36500 -sha256 -extensions v3_req  -CA  ca.cer -CAkey ca.
 ## 测试
 
 ### 单向认证
-#### 服务器
+服务器
 ```shell
 openssl s_server -CAfile ca.cer -cert server.cer -key server.key -accept 22580
 ```
 
-#### 客户端
+客户端
 ```shell
 openssl s_client -CAfile ca.cer -cert client.cer -key client.key -connect 127.0.0.1 -port 22580
 ```
 
 ### 双向认证
-#### 服务器
+服务器
 ```shell
 openssl s_server -CAfile ca.cer -cert server.cer -key server.key -accept 22580 -Verify 1
 ```
 
-#### 客户端
+客户端
 ```shell
 openssl s_client -CAfile ca.cer -cert server.cer -key server.key -cert client.cer -key client.key -connect 127.0.0.1 -port 22580
 ```
